@@ -16,5 +16,7 @@ namespace MarqueSeuFut.Models
         [Display(Name = "Nome")] // palavra que vai ser exibida em nossa tela
         [Required(ErrorMessage = "Obrigatório informar a Posição")] //Mensagem para quando o campo estiver nulo
         public string Nome { get; set; }
+
+        public ICollection<Jogador> Jogadores { get; set; } //para chave estrangeira
     }
 }

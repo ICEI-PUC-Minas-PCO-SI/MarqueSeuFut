@@ -38,7 +38,7 @@
             <div class="options">
                 <div class="search-box">
                     <button type="button" class="header-icon btn-search icon bi bi-search"></button>
-                    <input type="text" class="input-search" placeholder="Pesquise aqui...">
+                    <input type="text" class="input-search" placeholder="Pesquisar times...">
                 </div>
 
                 <button type="button" class="header-icon icon bi bi-bell"></button>
@@ -59,14 +59,14 @@
 
 
     <footer>
-        <div class="footer-logo">
-            <img src="imagens/logo.png" alt="">
+        <div>
+            <a asp-area="" asp-controller="Home"> &copy; 2021 - Marque Seu Fut</a>
         </div>
 
         <div class="terms">
             <p><a href="#">Termos de Uso</a></p>
             <i class="icon bi bi-circle-fill"></i>
-            <p><a href="#">Políticas de Privacidade</a></p>
+            <p><a asp-action="Privacy">Políticas de Privacidade</a></p>
         </div>
         <div>
 
@@ -75,7 +75,6 @@
                 <a href="#"><i class="icon bi bi-envelope"></i></a>
             </div>
         </div>
-
     </footer>
     @await RenderSectionAsync("Scripts", required: false)
     <script src="~/js/script.js" asp-append-version="true"></script>
