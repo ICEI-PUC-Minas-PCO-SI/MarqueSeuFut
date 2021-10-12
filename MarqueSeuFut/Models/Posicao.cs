@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MarqueSeuFut.Models
 {
-    [Table("Funcoes")] // define o nome da tabela
+    [Table("Posicoes")] // define o nome da tabela
     public class Posicao
     {
         [Key] // chave primaria e auto incremento
