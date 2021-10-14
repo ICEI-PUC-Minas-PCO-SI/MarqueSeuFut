@@ -9,23 +9,22 @@ using MarqueSeuFut.Models;
 
 namespace MarqueSeuFut.Controllers
 {
-    public class JogadoresController : Controller
+    public class TimesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public JogadoresController(ApplicationDbContext context)
+        public TimesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Jogadores
+        // GET: Times
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Jogadores.Include(j => j.Posicao).Include(j => j.Time);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Times.ToListAsync());
         }
 
-        // GET: Jogadores/Details/5
+        // GET: Times/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,45 +32,39 @@ namespace MarqueSeuFut.Controllers
                 return NotFound();
             }
 
-            var jogador = await _context.Jogadores
-                .Include(j => j.Posicao)
-                .Include(j => j.Time)
+            var time = await _context.Times
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (jogador == null)
+            if (time == null)
             {
                 return NotFound();
             }
 
-            return View(jogador);
+            return View(time);
         }
 
-        // GET: Jogadores/Create
+        // GET: Times/Create
         public IActionResult Create()
         {
-            ViewData["PosicaoId"] = new SelectList(_context.Posicoes, "Id", "Nome");
-            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Nome");
             return View();
         }
 
-        // POST: Jogadores/Create
+        // POST: Times/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Numero,PosicaoId,TimeId")] Jogador jogador)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Localizacao,AnoFundacao,Escudo,Descricao")] Time time)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(jogador);
+                _context.Add(time);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PosicaoId"] = new SelectList(_context.Posicoes, "Id", "Nome", jogador.PosicaoId);
-            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Nome", jogador.TimeId);
-            return View(jogador);
+            return View(time);
         }
 
-        // GET: Jogadores/Edit/5
+        // GET: Times/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,24 +72,22 @@ namespace MarqueSeuFut.Controllers
                 return NotFound();
             }
 
-            var jogador = await _context.Jogadores.FindAsync(id);
-            if (jogador == null)
+            var time = await _context.Times.FindAsync(id);
+            if (time == null)
             {
                 return NotFound();
             }
-            ViewData["PosicaoId"] = new SelectList(_context.Posicoes, "Id", "Nome", jogador.PosicaoId);
-            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Nome", jogador.TimeId);
-            return View(jogador);
+            return View(time);
         }
 
-        // POST: Jogadores/Edit/5
+        // POST: Times/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Numero,PosicaoId,TimeId")] Jogador jogador)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Localizacao,AnoFundacao,Escudo,Descricao")] Time time)
         {
-            if (id != jogador.Id)
+            if (id != time.Id)
             {
                 return NotFound();
             }
@@ -105,12 +96,12 @@ namespace MarqueSeuFut.Controllers
             {
                 try
                 {
-                    _context.Update(jogador);
+                    _context.Update(time);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JogadorExists(jogador.Id))
+                    if (!TimeExists(time.Id))
                     {
                         return NotFound();
                     }
@@ -121,12 +112,10 @@ namespace MarqueSeuFut.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PosicaoId"] = new SelectList(_context.Posicoes, "Id", "Nome", jogador.PosicaoId);
-            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Nome", jogador.TimeId);
-            return View(jogador);
+            return View(time);
         }
 
-        // GET: Jogadores/Delete/5
+        // GET: Times/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,32 +123,30 @@ namespace MarqueSeuFut.Controllers
                 return NotFound();
             }
 
-            var jogador = await _context.Jogadores
-                .Include(j => j.Posicao)
-                .Include(j => j.Time)
+            var time = await _context.Times
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (jogador == null)
+            if (time == null)
             {
                 return NotFound();
             }
 
-            return View(jogador);
+            return View(time);
         }
 
-        // POST: Jogadores/Delete/5
+        // POST: Times/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var jogador = await _context.Jogadores.FindAsync(id);
-            _context.Jogadores.Remove(jogador);
+            var time = await _context.Times.FindAsync(id);
+            _context.Times.Remove(time);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool JogadorExists(int id)
+        private bool TimeExists(int id)
         {
-            return _context.Jogadores.Any(e => e.Id == id);
+            return _context.Times.Any(e => e.Id == id);
         }
     }
 }

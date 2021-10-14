@@ -25,5 +25,12 @@ namespace MarqueSeuFut.Models
 
         [ForeignKey("PosicaoId")]
         public Posicao Posicao { get; set; } //para chave estrangeira
+
+        public int TimeId { get; set; } //para chave estrangeira
+
+        [ForeignKey("TimeId")]
+        public Time Time { get; set; } //para chave estrangeira
+
+        public ICollection<Escalacao> Escalaoes { get; set; } //para chave estrangeira
     }
 }

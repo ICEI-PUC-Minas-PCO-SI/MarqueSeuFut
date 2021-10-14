@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MarqueSeuFut.Models.Jogador>
+﻿@model IEnumerable<MarqueSeuFut.Models.Escalacao>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,16 +13,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Numero)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Posicao)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Time)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Jogador)
             </th>
             <th></th>
         </tr>
@@ -31,16 +25,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Nome)
+                @Html.DisplayFor(modelItem => item.Time.Localizacao)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Numero)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Posicao.Nome)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Time.Nome)
+                @Html.DisplayFor(modelItem => item.Jogador.Nome)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

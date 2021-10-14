@@ -1,4 +1,4 @@
-﻿@model MarqueSeuFut.Models.Jogador
+﻿@model MarqueSeuFut.Models.Time
 
 @{
     ViewData["Title"] = "Details";
@@ -7,7 +7,7 @@
 <h1>Details</h1>
 
 <div>
-    <h4>Jogador</h4>
+    <h4>Time</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -17,22 +17,28 @@
             @Html.DisplayFor(model => model.Nome)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Numero)
+            @Html.DisplayNameFor(model => model.Localizacao)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Numero)
+            @Html.DisplayFor(model => model.Localizacao)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Posicao)
+            @Html.DisplayNameFor(model => model.AnoFundacao)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Posicao.Nome)
+            @Html.DisplayFor(model => model.AnoFundacao)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Time)
+            @Html.DisplayNameFor(model => model.Escudo)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Time.Localizacao)
+            @Html.DisplayFor(model => model.Escudo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descricao)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descricao)
         </dd>
     </dl>
 </div>

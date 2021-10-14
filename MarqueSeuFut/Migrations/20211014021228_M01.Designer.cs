@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MarqueSeuFut.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211012220826_M01")]
+    [Migration("20211014021228_M01")]
     partial class M01
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,9 +37,14 @@ namespace MarqueSeuFut.Migrations
                     b.Property<int>("PosicaoId")
                         .HasColumnType("int");
 
+                    b.Property<int>("TimeId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("PosicaoId");
+
+                    b.HasIndex("TimeId");
 
                     b.ToTable("Jogadores");
                 });
@@ -60,6 +65,35 @@ namespace MarqueSeuFut.Migrations
                     b.ToTable("Posicoes");
                 });
 
+            modelBuilder.Entity("MarqueSeuFut.Models.Time", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AnoFundacao")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Escudo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Localizacao")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Times");
+                });
+
             modelBuilder.Entity("MarqueSeuFut.Models.Jogador", b =>
                 {
                     b.HasOne("MarqueSeuFut.Models.Posicao", "Posicao")
@@ -68,10 +102,23 @@ namespace MarqueSeuFut.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MarqueSeuFut.Models.Time", "Time")
+                        .WithMany("Jogadores")
+                        .HasForeignKey("TimeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Posicao");
+
+                    b.Navigation("Time");
                 });
 
             modelBuilder.Entity("MarqueSeuFut.Models.Posicao", b =>
+                {
+                    b.Navigation("Jogadores");
+                });
+
+            modelBuilder.Entity("MarqueSeuFut.Models.Time", b =>
                 {
                     b.Navigation("Jogadores");
                 });

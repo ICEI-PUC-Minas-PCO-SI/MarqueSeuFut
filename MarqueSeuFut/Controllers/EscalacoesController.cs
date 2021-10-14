@@ -9,23 +9,23 @@ using MarqueSeuFut.Models;
 
 namespace MarqueSeuFut.Controllers
 {
-    public class JogadoresController : Controller
+    public class EscalacoesController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public JogadoresController(ApplicationDbContext context)
+        public EscalacoesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Jogadores
+        // GET: Escalacoes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Jogadores.Include(j => j.Posicao).Include(j => j.Time);
+            var applicationDbContext = _context.Escalacoes.Include(e => e.Jogador).Include(e => e.Time);
             return View(await applicationDbContext.ToListAsync());
         }
 
-        // GET: Jogadores/Details/5
+        // GET: Escalacoes/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,45 +33,45 @@ namespace MarqueSeuFut.Controllers
                 return NotFound();
             }
 
-            var jogador = await _context.Jogadores
-                .Include(j => j.Posicao)
-                .Include(j => j.Time)
+            var escalacao = await _context.Escalacoes
+                .Include(e => e.Jogador)
+                .Include(e => e.Time)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (jogador == null)
+            if (escalacao == null)
             {
                 return NotFound();
             }
 
-            return View(jogador);
+            return View(escalacao);
         }
 
-        // GET: Jogadores/Create
+        // GET: Escalacoes/Create
         public IActionResult Create()
         {
-            ViewData["PosicaoId"] = new SelectList(_context.Posicoes, "Id", "Nome");
-            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Nome");
+            ViewData["JogadorId"] = new SelectList(_context.Jogadores, "Id", "Nome");
+            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Localizacao");
             return View();
         }
 
-        // POST: Jogadores/Create
+        // POST: Escalacoes/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Numero,PosicaoId,TimeId")] Jogador jogador)
+        public async Task<IActionResult> Create([Bind("Id,TimeId,JogadorId")] Escalacao escalacao)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(jogador);
+                _context.Add(escalacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PosicaoId"] = new SelectList(_context.Posicoes, "Id", "Nome", jogador.PosicaoId);
-            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Nome", jogador.TimeId);
-            return View(jogador);
+            ViewData["JogadorId"] = new SelectList(_context.Jogadores, "Id", "Nome", escalacao.JogadorId);
+            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Localizacao", escalacao.TimeId);
+            return View(escalacao);
         }
 
-        // GET: Jogadores/Edit/5
+        // GET: Escalacoes/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,24 +79,24 @@ namespace MarqueSeuFut.Controllers
                 return NotFound();
             }
 
-            var jogador = await _context.Jogadores.FindAsync(id);
-            if (jogador == null)
+            var escalacao = await _context.Escalacoes.FindAsync(id);
+            if (escalacao == null)
             {
                 return NotFound();
             }
-            ViewData["PosicaoId"] = new SelectList(_context.Posicoes, "Id", "Nome", jogador.PosicaoId);
-            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Nome", jogador.TimeId);
-            return View(jogador);
+            ViewData["JogadorId"] = new SelectList(_context.Jogadores, "Id", "Nome", escalacao.JogadorId);
+            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Localizacao", escalacao.TimeId);
+            return View(escalacao);
         }
 
-        // POST: Jogadores/Edit/5
+        // POST: Escalacoes/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Numero,PosicaoId,TimeId")] Jogador jogador)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,TimeId,JogadorId")] Escalacao escalacao)
         {
-            if (id != jogador.Id)
+            if (id != escalacao.Id)
             {
                 return NotFound();
             }
@@ -105,12 +105,12 @@ namespace MarqueSeuFut.Controllers
             {
                 try
                 {
-                    _context.Update(jogador);
+                    _context.Update(escalacao);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!JogadorExists(jogador.Id))
+                    if (!EscalacaoExists(escalacao.Id))
                     {
                         return NotFound();
                     }
@@ -121,12 +121,12 @@ namespace MarqueSeuFut.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PosicaoId"] = new SelectList(_context.Posicoes, "Id", "Nome", jogador.PosicaoId);
-            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Nome", jogador.TimeId);
-            return View(jogador);
+            ViewData["JogadorId"] = new SelectList(_context.Jogadores, "Id", "Nome", escalacao.JogadorId);
+            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Localizacao", escalacao.TimeId);
+            return View(escalacao);
         }
 
-        // GET: Jogadores/Delete/5
+        // GET: Escalacoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -134,32 +134,32 @@ namespace MarqueSeuFut.Controllers
                 return NotFound();
             }
 
-            var jogador = await _context.Jogadores
-                .Include(j => j.Posicao)
-                .Include(j => j.Time)
+            var escalacao = await _context.Escalacoes
+                .Include(e => e.Jogador)
+                .Include(e => e.Time)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (jogador == null)
+            if (escalacao == null)
             {
                 return NotFound();
             }
 
-            return View(jogador);
+            return View(escalacao);
         }
 
-        // POST: Jogadores/Delete/5
+        // POST: Escalacoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var jogador = await _context.Jogadores.FindAsync(id);
-            _context.Jogadores.Remove(jogador);
+            var escalacao = await _context.Escalacoes.FindAsync(id);
+            _context.Escalacoes.Remove(escalacao);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool JogadorExists(int id)
+        private bool EscalacaoExists(int id)
         {
-            return _context.Jogadores.Any(e => e.Id == id);
+            return _context.Escalacoes.Any(e => e.Id == id);
         }
     }
 }
