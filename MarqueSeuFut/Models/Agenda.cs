@@ -9,7 +9,7 @@ namespace MarqueSeuFut.Models
     {
         public int Id { get; set; }
 
-        public DateTime DataHor2a { get; set; }
+        public DateTime DataHora { get; set; }
 
         public string Localizacao { get; set; }
     }
