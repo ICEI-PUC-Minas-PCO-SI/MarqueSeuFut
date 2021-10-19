@@ -21,7 +21,7 @@ namespace MarqueSeuFut.Controllers
         // GET: Escalacoes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Escalacoes.Include(e => e.Jogador).Include(e => e.Time);
+            var applicationDbContext = _context.Escalacoes.Include(e => e.Jogador3).Include(e => e.Time);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,7 +34,7 @@ namespace MarqueSeuFut.Controllers
             }
 
             var escalacao = await _context.Escalacoes
-                .Include(e => e.Jogador)
+                .Include(e => e.Jogador3)
                 .Include(e => e.Time)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (escalacao == null)
@@ -135,7 +135,7 @@ namespace MarqueSeuFut.Controllers
             }
 
             var escalacao = await _context.Escalacoes
-                .Include(e => e.Jogador)
+                .Include(e => e.Jogador3)
                 .Include(e => e.Time)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (escalacao == null)
