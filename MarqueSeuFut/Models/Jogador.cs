@@ -31,6 +31,6 @@ namespace MarqueSeuFut.Models
         [ForeignKey("TimeId")]
         public Time Time { get; set; } //para chave estrangeira
 
-        public ICollection<Escalacao> Escalaoes { get; set; } //para chave estrangeira
+        public ICollection<Escalacao> Escalacoes { get; set; } //para chave estrangeira
     }
 }

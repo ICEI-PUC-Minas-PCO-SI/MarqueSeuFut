@@ -17,9 +17,20 @@ namespace MarqueSeuFut.Models
 
         }
 
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            var cascadeFKs = builder.Model.GetEntityTypes()
+            .SelectMany(t => t.GetForeignKeys())
+            .Where(fk => !fk.IsOwnership && fk.DeleteBehavior == DeleteBehavior.Cascade);
+            foreach (var fk in cascadeFKs)
+                fk.DeleteBehavior = DeleteBehavior.Restrict;
+            base.OnModelCreating(builder);
+        }
+
         public DbSet<Posicao> Posicoes { get; set; } // tera esse atributo para todas as tabelas que serão criadas
         public DbSet<Jogador> Jogadores { get; set; }
         public DbSet<Time> Times { get; set; }
         public DbSet<Escalacao> Escalacoes { get; set; }
     }
+
 }
