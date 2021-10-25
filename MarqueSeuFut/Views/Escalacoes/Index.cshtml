@@ -1,0 +1,63 @@
+﻿@model IEnumerable<MarqueSeuFut.Models.Escalacao>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Escalação</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Adicionar Jogador na Escalação</a>
+    <a asp-controller="Jogadores" asp-action="Index" class="btn btn-primary">Ver Jogadores</a>
+</p>
+<h2>Time Titular</h2>
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.IsTItular == true)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jogador.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jogador.Numero)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jogador.Posicao.Nome)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalhes</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                    </td>
+                </tr>
+            }
+        }
+</table>
+<h2>Reservas</h2>
+<table class="table">
+    @foreach (var item in Model)
+    {
+        if (item.IsTItular == false)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jogador.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jogador.Numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Jogador.Posicao.Nome)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                </td>
+            </tr>
+        }
+    }
+</table>

@@ -22,5 +22,7 @@ namespace MarqueSeuFut.Models
 
         [ForeignKey("JogadorId")]
         public Jogador Jogador { get; set; } //para chave estrangeira
+
+        public bool IsTItular { get; set; }
     }
 }
