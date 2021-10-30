@@ -9,10 +9,10 @@
 <p>
     <a asp-action="Create" class="btn btn-primary">Adicionar Jogador na Escalação</a>
     <a asp-controller="Jogadores" asp-action="Index" class="btn btn-primary">Ver Jogadores</a>
+    <a asp-action="Index">Back to List</a>
 </p>
 <h2>Time Titular</h2>
 <table class="table">
-    <tbody>
         @foreach (var item in Model)
         {
             if (item.IsTItular == true)
@@ -28,9 +28,7 @@
                         @Html.DisplayFor(modelItem => item.Jogador.Posicao.Nome)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalhes</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                        <a asp-action="Titular" asp-route-id="@item.Id" class="btn btn-primary">Selecionar para reserva</a>
                     </td>
                 </tr>
             }
@@ -53,9 +51,8 @@
                     @Html.DisplayFor(modelItem => item.Jogador.Posicao.Nome)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Editar</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Detalhes</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Excluir</a>
+                    <a asp-action="Titular" asp-route-id="@item.Id" class="btn btn-primary">Selecionar para titular</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Remover</a>
                 </td>
             </tr>
         }

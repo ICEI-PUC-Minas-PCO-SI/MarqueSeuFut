@@ -62,6 +62,7 @@ namespace MarqueSeuFut.Controllers
         {
             if (ModelState.IsValid)
             {
+                escalacao.IsTItular = false;
                 _context.Add(escalacao);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -126,6 +127,34 @@ namespace MarqueSeuFut.Controllers
             return View(escalacao);
         }
 
+        public async Task<IActionResult> Titular(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var escalacao = await _context.Escalacoes.FindAsync(id);
+            if (escalacao == null)
+            {
+                return NotFound();
+            }
+
+            if (escalacao.IsTItular == true)
+            {
+                escalacao.IsTItular = false;
+            }
+            else
+            {
+                escalacao.IsTItular = true;
+            }
+            _context.Update(escalacao);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+
+        }
+
         // GET: Escalacoes/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -133,27 +162,13 @@ namespace MarqueSeuFut.Controllers
             {
                 return NotFound();
             }
-
-            var escalacao = await _context.Escalacoes
-                .Include(e => e.Jogador)
-                .Include(e => e.Time)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var escalacao = await _context.Escalacoes.FindAsync(id);
+            _context.Escalacoes.Remove(escalacao);
+            await _context.SaveChangesAsync();
             if (escalacao == null)
             {
                 return NotFound();
             }
-
-            return View(escalacao);
-        }
-
-        // POST: Escalacoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var escalacao = await _context.Escalacoes.FindAsync(id);
-            _context.Escalacoes.Remove(escalacao);
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
