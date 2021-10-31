@@ -3,15 +3,15 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<br />
 <h1>Escalação</h1>
-
+<br />
 <p>
     <a asp-action="Create" class="btn btn-primary">Adicionar Jogador na Escalação</a>
     <a asp-controller="Jogadores" asp-action="Index" class="btn btn-primary">Ver Jogadores</a>
-    <a asp-action="Index">Back to List</a>
+    <a asp-controller="Home" asp-action="Index">Voltar</a>
 </p>
-<h2>Time Titular</h2>
+<h2>Titulares</h2>
 <table class="table">
         @foreach (var item in Model)
         {
