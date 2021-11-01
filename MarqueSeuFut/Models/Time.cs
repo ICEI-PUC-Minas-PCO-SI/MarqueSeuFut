@@ -32,5 +32,10 @@ namespace MarqueSeuFut.Models
         public ICollection<Jogador> Jogadores { get; set; } //para chave estrangeira
 
         public ICollection<Escalacao> Escalacoes { get; set; } //para chave estrangeira
+
+        public int UsuarioId { get; set; }
+
+        [ForeignKey("UsuárioId")]
+        public int Líder { get; set; }
     }
 }

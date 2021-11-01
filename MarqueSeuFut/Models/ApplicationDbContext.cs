@@ -32,6 +32,7 @@ namespace MarqueSeuFut.Models
         public DbSet<Time> Times { get; set; }
         public DbSet<Escalacao> Escalacoes { get; set; }
         public DbSet<Agenda> Agendas { get; set; }
+        public DbSet<Partida> Partidas { get; set; }
     }
 
 }
