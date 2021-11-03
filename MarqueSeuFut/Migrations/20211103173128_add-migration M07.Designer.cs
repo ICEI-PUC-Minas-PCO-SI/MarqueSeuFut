@@ -4,14 +4,16 @@ using MarqueSeuFut.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MarqueSeuFut.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211103173128_add-migration M07")]
+    partial class addmigrationM07
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -99,39 +101,6 @@ namespace MarqueSeuFut.Migrations
                     b.HasIndex("TimeId");
 
                     b.ToTable("Jogadores");
-                });
-
-            modelBuilder.Entity("MarqueSeuFut.Models.Partida", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Cidade")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Quadra")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TimeCasaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TimeVisitanteId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("TimeCasaId");
-
-                    b.HasIndex("TimeVisitanteId");
-
-                    b.ToTable("Partidas");
                 });
 
             modelBuilder.Entity("MarqueSeuFut.Models.Posicao", b =>
@@ -234,25 +203,6 @@ namespace MarqueSeuFut.Migrations
                     b.Navigation("Posicao");
 
                     b.Navigation("Time");
-                });
-
-            modelBuilder.Entity("MarqueSeuFut.Models.Partida", b =>
-                {
-                    b.HasOne("MarqueSeuFut.Models.Time", "TimeCasa")
-                        .WithMany()
-                        .HasForeignKey("TimeCasaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MarqueSeuFut.Models.Time", "TimeVisitante")
-                        .WithMany()
-                        .HasForeignKey("TimeVisitanteId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("TimeCasa");
-
-                    b.Navigation("TimeVisitante");
                 });
 
             modelBuilder.Entity("MarqueSeuFut.Models.Jogador", b =>

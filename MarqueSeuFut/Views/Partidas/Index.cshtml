@@ -4,10 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1 align="center">Estatísticas</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Adicionar Nova Partida</a>
 </p>
 <table class="table">
     <thead>
@@ -16,13 +16,16 @@
                 @Html.DisplayNameFor(model => model.Data)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Descricao)
+                @Html.DisplayNameFor(model => model.Quadra)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Time1)
+                @Html.DisplayNameFor(model => model.Cidade)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Time2)
+                @Html.DisplayNameFor(model => model.TimeCasa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TimeVisitante)
             </th>
             <th></th>
         </tr>
@@ -34,18 +37,20 @@
                 @Html.DisplayFor(modelItem => item.Data)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
+                @Html.DisplayFor(modelItem => item.Quadra)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Time1.Localizacao)
+                @Html.DisplayFor(modelItem => item.Cidade)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Time2.Localizacao)
+                @Html.DisplayFor(modelItem => item.TimeCasa.Nome)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                @Html.DisplayFor(modelItem => item.TimeVisitante.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Apagar</a>
             </td>
         </tr>
 }

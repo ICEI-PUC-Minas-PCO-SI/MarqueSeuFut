@@ -21,7 +21,7 @@ namespace MarqueSeuFut.Controllers
         // GET: Partidas
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Partidas.Include(p => p.Time1).Include(p => p.Time2);
+            var applicationDbContext = _context.Partidas.Include(p => p.TimeCasa).Include(p => p.TimeVisitante);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,8 +34,8 @@ namespace MarqueSeuFut.Controllers
             }
 
             var partida = await _context.Partidas
-                .Include(p => p.Time1)
-                .Include(p => p.Time2)
+                .Include(p => p.TimeCasa)
+                .Include(p => p.TimeVisitante)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (partida == null)
             {
@@ -48,8 +48,8 @@ namespace MarqueSeuFut.Controllers
         // GET: Partidas/Create
         public IActionResult Create()
         {
-            ViewData["Time1Id"] = new SelectList(_context.Times, "Id", "Localizacao");
-            ViewData["Time2Id"] = new SelectList(_context.Times, "Id", "Localizacao");
+            ViewData["TimeCasaId"] = new SelectList(_context.Times, "Id", "Nome");
+            ViewData["TimeVisitanteId"] = new SelectList(_context.Times, "Id", "Nome");
             return View();
         }
 
@@ -58,7 +58,7 @@ namespace MarqueSeuFut.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Data,Descricao,Time1Id,Time2Id")] Partida partida)
+        public async Task<IActionResult> Create([Bind("Id,Data,Quadra,Cidade,TimeCasaId,TimeVisitanteId")] Partida partida)
         {
             if (ModelState.IsValid)
             {
@@ -66,8 +66,8 @@ namespace MarqueSeuFut.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Time1Id"] = new SelectList(_context.Times, "Id", "Localizacao", partida.Time1Id);
-            ViewData["Time2Id"] = new SelectList(_context.Times, "Id", "Localizacao", partida.Time2Id);
+            ViewData["TimeCasaId"] = new SelectList(_context.Times, "Id", "Nome", partida.TimeCasaId);
+            ViewData["TimeVisitanteId"] = new SelectList(_context.Times, "Id", "Nome", partida.TimeVisitanteId);
             return View(partida);
         }
 
@@ -84,8 +84,8 @@ namespace MarqueSeuFut.Controllers
             {
                 return NotFound();
             }
-            ViewData["Time1Id"] = new SelectList(_context.Times, "Id", "Localizacao", partida.Time1Id);
-            ViewData["Time2Id"] = new SelectList(_context.Times, "Id", "Localizacao", partida.Time2Id);
+            ViewData["TimeCasaId"] = new SelectList(_context.Times, "Id", "Nome", partida.TimeCasaId);
+            ViewData["TimeVisitanteId"] = new SelectList(_context.Times, "Id", "Nome", partida.TimeVisitanteId);
             return View(partida);
         }
 
@@ -94,7 +94,7 @@ namespace MarqueSeuFut.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Data,Descricao,Time1Id,Time2Id")] Partida partida)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Data,Quadra,Cidade,TimeCasaId,TimeVisitanteId")] Partida partida)
         {
             if (id != partida.Id)
             {
@@ -121,8 +121,8 @@ namespace MarqueSeuFut.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Time1Id"] = new SelectList(_context.Times, "Id", "Localizacao", partida.Time1Id);
-            ViewData["Time2Id"] = new SelectList(_context.Times, "Id", "Localizacao", partida.Time2Id);
+            ViewData["TimeCasaId"] = new SelectList(_context.Times, "Id", "Nome", partida.TimeCasaId);
+            ViewData["TimeVisitanteId"] = new SelectList(_context.Times, "Id", "Nome", partida.TimeVisitanteId);
             return View(partida);
         }
 
@@ -135,8 +135,8 @@ namespace MarqueSeuFut.Controllers
             }
 
             var partida = await _context.Partidas
-                .Include(p => p.Time1)
-                .Include(p => p.Time2)
+                .Include(p => p.TimeCasa)
+                .Include(p => p.TimeVisitante)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (partida == null)
             {
