@@ -11,29 +11,40 @@ namespace MarqueSeuFut.Models
     public class Partida
     {
         [Key]
+
         public int Id { get; set; }
 
+
         [Display(Name = "Data")] // palavra que vai ser exibida em nossa tela
-        [Required(ErrorMessage = "Obrigatório informar a data!")] //Mensagem para quando o campo estiver nulo
+        [Required(ErrorMessage = "Obrigatório informar a Data!")] //Mensagem para quando o campo estiver nulo
         public DateTime Data { get; set; }
 
-        [Display(Name = "Descrição")] // palavra que vai ser exibida em nossa tela
-        [Required(ErrorMessage = "Obrigatório informar a descrição!")] //Mensagem para quando o campo estiver nulo
-        public string  Descricao { get; set; }
 
-        [Display(Name = "Time 1")] // palavra que vai ser exibida em nossa tela
-        [Required(ErrorMessage = "Obrigatório informar o time 1!")] //Mensagem para quando o campo estiver nulo
-        public int Time1Id { get; set; }
+        [Display(Name = "Quadra")] // palavra que vai ser exibida em nossa tela
+        [Required(ErrorMessage = "Obrigatório informar a Quadra da Partida!")] //Mensagem para quando o campo estiver nulo
+        public string Quadra { get; set; }
 
-        [ForeignKey("Time1Id")]
-        public Time Time1 { get; set; }
 
-        [Display(Name = "Time 2")] // palavra que vai ser exibida em nossa tela
-        [Required(ErrorMessage = "Obrigatório informar o time 2!")] //Mensagem para quando o campo estiver nulo
-        public int Time2Id { get; set; }
+        [Display(Name = "Cidade")] // palavra que vai ser exibida em nossa tela
+        [Required(ErrorMessage = "Obrigatório informar a Cidade da Partida")] //Mensagem para quando o campo estiver nulo
+        public string Cidade { get; set; }
 
-        [ForeignKey("Time2Id")]
-        public Time Time2 { get; set; }
+
+        [Display(Name = "Time Casa")] // palavra que vai ser exibida em nossa tela
+        [Required(ErrorMessage = "Obrigatório informar o time da casa!")] //Mensagem para quando o campo estiver nulo
+        public int TimeCasaId { get; set; }
+
+        [ForeignKey("TimeCasaId")]
+
+        public Time TimeCasa { get; set; }
+
+        [Display(Name = "Time Visitante")] // palavra que vai ser exibida em nossa tela
+        [Required(ErrorMessage = "Obrigatório informar o time visitante!")] //Mensagem para quando o campo estiver nulo
+        public int TimeVisitanteId { get; set; }
+
+        [ForeignKey("TimeVisitanteId")]
+
+        public Time TimeVisitante { get; set; }
 
 
     }
