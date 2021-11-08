@@ -48,8 +48,9 @@ namespace MarqueSeuFut.Controllers
         // GET: Escalacoes/Create
         public IActionResult Create()
         {
-            ViewData["JogadorId"] = new SelectList(_context.Jogadores, "Id", "Nome");
-            ViewData["TimeId"] = new SelectList(_context.Times, "Id", "Nome");
+            var escalados = _context.Escalacoes.Select(c => c.JogadorId).ToList();
+            ViewData["NomeJogador"] = new SelectList(_context.Jogadores.Where(c => !escalados.Contains(c.Id)), "Id", "Nome");
+            ViewData["NomeTime"] = new SelectList(_context.Times, "Id", "Nome");
             return View();
         }
 
