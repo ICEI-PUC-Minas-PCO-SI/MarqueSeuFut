@@ -1,12 +1,13 @@
 ﻿@model MarqueSeuFut.Models.Partida
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Criação de Partidas";
 }
 
-<h1>Create</h1>
+<h3></h3>
+<h2 align="center">Criação de Partidas</h2>
 
-<h4>Partida</h4>
+<h4>Criar Partida</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -29,22 +30,25 @@
             </div>
             <div class="form-group">
                 <label asp-for="TimeCasaId" class="control-label"></label>
-                <select asp-for="TimeCasaId" class ="form-control" asp-items="ViewBag.TimeCasaId"></select>
+                <select asp-for="TimeCasaId" class="form-control" asp-items="ViewBag.TimeCasaId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="TimeVisitanteId" class="control-label"></label>
-                <select asp-for="TimeVisitanteId" class ="form-control" asp-items="ViewBag.TimeVisitanteId"></select>
+                <select asp-for="TimeVisitanteId" class="form-control" asp-items="ViewBag.TimeVisitanteId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Criar" class="btn btn-primary" />
+                <a asp-action="Index">Voltar</a>
             </div>
         </form>
     </div>
+
+    <h3></h3>
+    <h3></h3>
+    <h3></h3>
+    <h3></h3>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

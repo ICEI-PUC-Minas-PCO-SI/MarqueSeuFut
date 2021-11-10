@@ -31,9 +31,10 @@ namespace MarqueSeuFut.Models
         public DbSet<Jogador> Jogadores { get; set; }
         public DbSet<Time> Times { get; set; }
         public DbSet<Escalacao> Escalacoes { get; set; }
-        public DbSet<Agenda> Agendas { get; set; }
         public DbSet<Partida> Partidas { get; set; }
         public DbSet<MarqueSeuFut.Models.Estatistica> Estatistica { get; set; }
+
+        public DbSet<Estatistica> Estatisticas { get; set; }
 
     }
 

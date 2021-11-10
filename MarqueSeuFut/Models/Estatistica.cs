@@ -14,7 +14,8 @@ namespace MarqueSeuFut.Models
 
         public int Id { get; set; }
 
-        public int PartidaId { get; set; } //para chave estrangeira
+        [Display(Name = "Partida")] // palavra que vai ser exibida em nossa tela
+        public int PartidaId { get; set; }
 
         [ForeignKey("PartidaId")]
         public Partida Partida { get; set; } //para chave estrangeira
