@@ -35,6 +35,7 @@
                 <li>
                     <a asp-area="" asp-controller="Estatisticas" asp-action="Index">Estatísticas</a>
                 </li>
+
             </ul>
             <div class="options">
                 <div class="search-box">
@@ -43,7 +44,7 @@
                 </div>
 
                 <button type="button" class="header-icon icon bi bi-bell"></button>
-                <button type="button" class="header-icon icon bi bi-person-circle"></button>
+                <a class="header-icon icon bi bi-person-circle" asp-area="" asp-controller="Perfis" asp-action="Index"></a>
                 <div class="logout"><a href="#">Sair</a></div>
 
             </div>

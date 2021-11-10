@@ -36,6 +36,8 @@ namespace MarqueSeuFut.Models
 
         public DbSet<Estatistica> Estatisticas { get; set; }
 
+        public DbSet<Perfil> Perfis { get; set; }
+
     }
 
 }
