@@ -4,14 +4,16 @@ using MarqueSeuFut.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MarqueSeuFut.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211108141846_M10")]
+    partial class M10
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,38 +136,6 @@ namespace MarqueSeuFut.Migrations
                     b.ToTable("Partidas");
                 });
 
-            modelBuilder.Entity("MarqueSeuFut.Models.Perfil", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("EscalacaoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EstatisticaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PartidaId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TimeId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EscalacaoId");
-
-                    b.HasIndex("EstatisticaId");
-
-                    b.HasIndex("PartidaId");
-
-                    b.HasIndex("TimeId");
-
-                    b.ToTable("Perfil");
-                });
-
             modelBuilder.Entity("MarqueSeuFut.Models.Posicao", b =>
                 {
                     b.Property<int>("Id")
@@ -281,41 +251,6 @@ namespace MarqueSeuFut.Migrations
                     b.Navigation("TimeCasa");
 
                     b.Navigation("TimeVisitante");
-                });
-
-            modelBuilder.Entity("MarqueSeuFut.Models.Perfil", b =>
-                {
-                    b.HasOne("MarqueSeuFut.Models.Escalacao", "Escalacao")
-                        .WithMany()
-                        .HasForeignKey("EscalacaoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MarqueSeuFut.Models.Estatistica", "Estatistica")
-                        .WithMany()
-                        .HasForeignKey("EstatisticaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MarqueSeuFut.Models.Partida", "Partida")
-                        .WithMany()
-                        .HasForeignKey("PartidaId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("MarqueSeuFut.Models.Time", "Time")
-                        .WithMany()
-                        .HasForeignKey("TimeId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Escalacao");
-
-                    b.Navigation("Estatistica");
-
-                    b.Navigation("Partida");
-
-                    b.Navigation("Time");
                 });
 
             modelBuilder.Entity("MarqueSeuFut.Models.Jogador", b =>
