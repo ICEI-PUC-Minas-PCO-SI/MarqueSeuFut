@@ -49,7 +49,9 @@ namespace MarqueSeuFut.Controllers
         // GET: Estatisticas/Create
         public IActionResult Create()
         {
-            ViewData["PartidaId"] = new SelectList(_context.Partidas, "Id", "TimeCasa", "TimeVistante");
+            ViewData["PartidaId"] = new SelectList(_context.Partidas
+                .Include(e => e.TimeCasa).Include(e => e.TimeVisitante)
+                .Select(c => new { Id = c.Id, Nome = c.TimeCasa.Nome + " x " + c.TimeVisitante.Nome }), "Id", "Nome");
             return View();
         }
 
@@ -66,7 +68,9 @@ namespace MarqueSeuFut.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["PartidaId"] = new SelectList(_context.Partidas, "Id", "TimeCasa" , estatistica.PartidaId);
+            ViewData["PartidaId"] = new SelectList(_context.Partidas
+                .Include(e => e.TimeCasa).Include(e => e.TimeVisitante)
+                .Select(c => new { Id = c.Id, Nome = c.TimeCasa.Nome + " x " + c.TimeVisitante.Nome }), "Id", "Nome", estatistica.PartidaId);
             return View(estatistica);
         }
 
