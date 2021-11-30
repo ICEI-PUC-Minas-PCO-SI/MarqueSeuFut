@@ -38,6 +38,8 @@ namespace MarqueSeuFut.Models
 
         public DbSet<Perfil> Perfis { get; set; }
 
+        public DbSet<Pesquisa> Pesquisa { get; set; }
+
     }
 
 }

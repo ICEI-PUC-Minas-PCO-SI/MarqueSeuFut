@@ -15,7 +15,7 @@ body {
 
     body a {
         font-family: "Nunito Sans", sans-serif;
-        color: #d8f3dc;
+        color: #2d6a4f;
         text-decoration: none;
         font-size: 1rem;
     }
@@ -32,6 +32,10 @@ header {
     color: #d8f3dc;
     min-height: 80px;
     box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+header a{
+    color: #d8f3dc;
 }
 
 .logo {
@@ -93,46 +97,6 @@ nav.active #hamburger {
         top: -7px;
     }
 
-.search-box {
-    position: relative;
-}
-
-.input-search {
-    width: 0px;
-    border-style: none;
-    padding-left: 10px;
-    outline: none;
-    border-radius: 25px;
-    transition: all 0.5s ease-in-out;
-    background-color: transparent;
-    padding-right: 40px;
-    color: #d8f3dc;
-}
-
-    .input-search::placeholder {
-        color: #d8f3dc;
-    }
-
-.btn-search {
-    position: absolute;
-    padding: 0;
-    right: 0;
-    margin-top: 1.8px;
-    border-style: none;
-    cursor: pointer;
-    color: #d8f3dc;
-    pointer-events: painted;
-}
-
-    .btn-search:focus ~ .input-search,
-    .input-search:focus {
-        width: 250px;
-        font-size: 0.9rem;
-        border-radius: 0px;
-        background-color: transparent;
-        border-bottom: 1px solid #d8f3dc;
-        transition: all 500ms cubic-bezier(0, 0.11, 0.35, 1.2);
-    }
 
 .options {
     display: flex;
@@ -141,11 +105,15 @@ nav.active #hamburger {
 
 .header-icon {
     padding: 0;
+    line-height: 0;
     border-style: none;
     cursor: pointer;
     color: #d8f3dc;
     background-color: transparent;
     pointer-events: painted;
+}
+.header-icon:hover{
+    color:currentColor;
 }
 
 .icon {
@@ -161,6 +129,8 @@ nav.active #hamburger {
 main {
     padding: 1rem 0 3.5rem 0;
 }
+
+
 
 footer {
     background-color: #40916c;
@@ -326,23 +296,6 @@ footer p {
         display: flex;
     }
 
-    nav.active .search-box {
-        position: absolute;
-        top: 80px;
-        z-index: 1;
-        right: 10px;
-    }
-
-    .btn-search:focus ~ .input-search,
-    .input-search:focus {
-        width: 600px;
-        max-width: 85vw;
-        padding: 10px 0;
-    }
-
-    .input-search::placeholder {
-        font-size: 1rem;
-    }
 
     main {
         padding-bottom: 8.5rem;
