@@ -5,7 +5,10 @@
     ViewData["Title"] = "Perfil";
 }
 <main>
-    <h3> </h3>
+    <div class="alert alert-success" role="alert">
+        Atenção você tem um evento agendado para o dia 00/00/00.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
     <h2 align="center">Perfil</h2>
     <table align="center">
         <thead>
@@ -15,9 +18,9 @@
                     {
                         <h2>@shift.Nome</h2>
                     }
-                    </td>
+                </td>
 
-                </tr>
+            </tr>
         </thead>
     </table>
 
@@ -200,14 +203,14 @@
 
                     @foreach (var shift in ViewBag.Escalacao)
                     {
-                <li>
-                    @shift.TimeId
-                    @foreach (var shift2 in ViewBag.Jogadores)
-                    {
-                        
-                    }
+                        <li>
+                            @shift.TimeId
+                            @foreach (var shift2 in ViewBag.Jogadores)
+                            {
 
-                </li>
+                            }
+
+                        </li>
 
                     }
                 </td>
@@ -217,4 +220,4 @@
         </thead>
     </table>
 
-    </main>
+</main>
