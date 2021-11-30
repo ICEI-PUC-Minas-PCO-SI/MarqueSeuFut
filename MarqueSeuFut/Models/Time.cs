@@ -34,5 +34,8 @@ namespace MarqueSeuFut.Models
         public ICollection<Escalacao> Escalacoes { get; set; } //para chave estrangeira
 
         public ICollection<Estatistica> Estatisticas { get; set; } //para chave estrangeira
+
+        public ICollection<Pesquisa> Pesquisa { get; set; } //para chave estrangeira
+
     }
 }

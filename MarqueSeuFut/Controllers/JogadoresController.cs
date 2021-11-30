@@ -151,6 +151,11 @@ namespace MarqueSeuFut.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            var escalacao = await _context.Escalacoes.FindAsync(id);
+            if(escalacao != null)
+            {
+                _context.Escalacoes.Remove(escalacao);
+            }
             var jogador = await _context.Jogadores.FindAsync(id);
             _context.Jogadores.Remove(jogador);
             await _context.SaveChangesAsync();

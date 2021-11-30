@@ -22,6 +22,13 @@ namespace MarqueSeuFut.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Times = _context.Times.Where(d => d.Id == 1).ToList();
+            ViewBag.Estatisticas = _context.Estatistica.Where(d => d.PartidaId == 1).ToList();
+            ViewBag.Partidas = _context.Partidas.Where(d => d.Id == 1).ToList();
+            ViewBag.Escalacao = _context.Escalacoes.Where(d => d.IsTItular == true).ToList();
+            ViewBag.Jogadores = _context.Jogadores.Select(d => d.Id).ToList();
+            
+
             return View();
         }
 
