@@ -5,53 +5,57 @@
 }
 
 
-<h1>Times</h1>
+<main class="container">
+    <h1>Times</h1>
 
 
-<table id="jose" class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Localizacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AnoFundacao)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </th>
-            
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-               <a asp-area="" asp-controller="Perfis" asp-action="Index">  @Html.DisplayFor(modelItem => item.Nome ) </a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Localizacao)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AnoFundacao)
-            </td>
+    <table id="table" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Localizacao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AnoFundacao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Descricao)
+                </th>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Descricao)
-            </td>
-            
-        </tr>
-}
-    </tbody>
-</table>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a asp-area="" asp-controller="Perfis" asp-action="Index">  @Html.DisplayFor(modelItem => item.Nome) </a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Localizacao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AnoFundacao)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descricao)
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</main>
 
 @section Scripts{
     <script>
     $(document).ready(function() {
-    $('#jose').DataTable( {
+    $('#table').DataTable( {
         "language": {
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Portuguese-Brasil.json"
         }

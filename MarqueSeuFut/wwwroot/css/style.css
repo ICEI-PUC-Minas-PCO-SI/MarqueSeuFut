@@ -127,7 +127,18 @@ nav.active #hamburger {
 }
 
 main {
-    padding: 1rem 0 3.5rem 0;
+    padding: 0rem 0 3rem 0;
+}
+#home {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), url(../imagens/img-home-1.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
+}
+#home h2, #home h5{
+    color:white;
+    text-align:center;
+    width:100%;
 }
 
 
